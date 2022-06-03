@@ -1,18 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { getAllCurrency } from '../../utils/requests';
+import { RatesType, LatestRespType, ExchangerState } from '../../types/types';
 
-type RatesType = { [key: string]: number };
-type LatestRespType = { date: string; rates: RatesType };
-type RateItemType = { name: string; rate: number };
-
-export interface ExchangerState {
-  rates: RateItemType[];
-  result: string;
-  loading: boolean;
-  hasError: boolean;
-  amount: string;
-  currency: string;
-}
+import { convertRatesObjToArray } from '../../utils/utils';
 
 const initialState = {
   rates: [],
@@ -22,12 +12,6 @@ const initialState = {
   amount: '100',
   currency: 'USD',
 } as ExchangerState;
-
-const convertRatesObjToArray = (items: RatesType): RateItemType[] =>
-  Object.keys(items).map((item) => ({
-    name: item,
-    rate: items[item],
-  }));
 
 export const exchangerSlice = createSlice({
   name: 'exchanger',

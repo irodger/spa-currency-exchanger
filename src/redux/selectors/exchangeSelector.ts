@@ -1,4 +1,4 @@
-import { ExchangerState } from '../slices/exchangerSlice';
+import { ExchangerState } from '../../types/types';
 
 export const ratesSelector = ({ exchanger }: { exchanger: ExchangerState }) => exchanger.rates;
 export const resultSelector = ({ exchanger }: { exchanger: ExchangerState }) => exchanger.result;

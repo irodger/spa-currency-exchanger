@@ -1,7 +1,9 @@
 import { FC, useCallback, useState } from 'react';
 import styled from '@emotion/styled';
-import { Typography, IconButton } from '@mui/material';
+import { Typography, IconButton, Skeleton } from '@mui/material';
 import { SortByAlpha as SortByAlphaIcon } from '@mui/icons-material';
+import { RateTableProps, RateItemType } from '../types/types';
+import { sortingRates, sortingCurrency } from '../utils/utils';
 
 const FlownContainer = styled.div`
   position: relative;
@@ -48,30 +50,25 @@ const Th = styled.th`
 `;
 
 const Tr = styled.tr`
+  cursor: pointer;
+
   &:hover {
     background-color: #306177;
   }
 `;
 
-type RateItemType = { name: string; rate: number };
+const TableItem: FC<RateItemType & { setCurrency: (cur: string) => void }> = ({ name, rate, setCurrency }) => {
+  const onClickHandler = () => setCurrency(name);
 
-type TableProps = {
-  items?: RateItemType[];
-  setCurrencyTo(name: string): void;
-};
-
-const sortingRates = (arr: RateItemType[], upSort = false): RateItemType[] => {
-  console.log('sort', arr[0]);
-
-  return arr.sort(({ rate: aRate }, { rate: bRate }) =>
-    upSort ? Number(aRate) - Number(bRate) : Number(bRate) - Number(aRate),
+  return (
+    <Tr onClick={onClickHandler}>
+      <Th scope="row">{name}</Th>
+      <Td>{rate}</Td>
+    </Tr>
   );
 };
 
-const sortingCurrency = (arr: RateItemType[], upSort = false) =>
-  arr.sort(({ name: aName }, { name: bName }) => (upSort ? aName.localeCompare(bName) : bName.localeCompare(aName)));
-
-export const Table: FC<TableProps> = ({ setCurrencyTo, items }) => {
+export const Table: FC<RateTableProps> = ({ setCurrencyTo, items }) => {
   const [isCurrSorted, setCurSorting] = useState(false);
   const [isRatesSorted, setRateSorting] = useState(false);
   const [tableItems, updateItems] = useState(items);
@@ -117,13 +114,12 @@ export const Table: FC<TableProps> = ({ setCurrencyTo, items }) => {
         {tableItems ? (
           <TBody>
             {tableItems.map((item) => (
-              <Tr key={item.name} onClick={() => setCurrencyTo(item.name)}>
-                <Th scope="row">{item.name}</Th>
-                <Td>{item.rate}</Td>
-              </Tr>
+              <TableItem key={item.name} {...item} setCurrency={setCurrencyTo} />
             ))}
           </TBody>
-        ) : null}
+        ) : (
+          <Skeleton variant="rectangular" width={376} height={30} />
+        )}
       </TableContainer>
     </FlownContainer>
   );
