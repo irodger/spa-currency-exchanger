@@ -1,16 +1,15 @@
-## Download the starter kit
-
-npx degit https://github.com/gopinav/React-TypeScript-Webpack-Starter my-app
+SPA Конвертер валюты
 
 ## Install dependencies
-
-cd my-app &&
-yarn
+```bash
+npm i
+```
 
 ## Run dev server
-
-yarn start
-
+```bash
+npm start
+```
 ## Build
-
-yarn build
+```bash
+npm build
+```
