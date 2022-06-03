@@ -1,4 +1,4 @@
-SPA Конвертер валюты
+SPA Конвертер валюты, [демо](https://irodger.github.io/spa-currency-exchanger/)
 
 ## Install dependencies
 ```bash
