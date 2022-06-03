@@ -1,17 +1,6 @@
-import { FC, ChangeEvent } from 'react';
-import { SelectChangeEvent } from '@mui/material/Select';
+import { FC } from 'react';
 import { Grid, FormControl, InputLabel, Input, InputAdornment, Select, MenuItem, Skeleton } from '@mui/material';
-
-type TCurrencyChanger = {
-  id: string;
-  inputLabel?: string;
-  selectLabel?: string;
-  currencyList?: string[];
-  inputValue: string;
-  selectValue: string;
-  selectHandler: (e: SelectChangeEvent) => void;
-  inputHandler: (e: ChangeEvent<HTMLInputElement>) => void;
-};
+import { TCurrencyChanger } from '../types/types';
 
 export const CurrencyChanger: FC<TCurrencyChanger> = ({
   id = 'id',
@@ -31,7 +20,7 @@ export const CurrencyChanger: FC<TCurrencyChanger> = ({
           id={`amount-${id}`}
           value={inputValue}
           onChange={inputHandler}
-          startAdornment={<InputAdornment position="start">₽</InputAdornment>}
+          endAdornment={<InputAdornment position="end">₽</InputAdornment>}
         />
       </FormControl>
     </Grid>
