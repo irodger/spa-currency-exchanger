@@ -18,6 +18,7 @@ export const CurrencyChanger: FC<TCurrencyChanger> = ({
         <InputLabel htmlFor={`amount-${id}`}>{inputLabel}</InputLabel>
         <Input
           id={`amount-${id}`}
+          type="phone"
           value={inputValue}
           onChange={inputHandler}
           endAdornment={<InputAdornment position="end">₽</InputAdornment>}

@@ -18,7 +18,7 @@ export const exchangerSlice = createSlice({
   initialState,
   reducers: {
     addAmount: (state, action) => {
-      state.amount = action.payload;
+      state.amount = isNaN(action.payload) ? 0 : action.payload;
     },
     setCurrency: (state, action) => {
       state.currency = action.payload;
