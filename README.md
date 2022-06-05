@@ -1,6 +1,6 @@
 SPA Конвертер валюты, [демо](https://irodger.github.io/spa-currency-exchanger/)
 
-Стэк: react, redux, redux-toolkit, mui, css-in-js, typescript, webpack, prettir, eslint, axios
+Стэк: react, redux, redux-toolkit, mui, @emotion, typescript, webpack, prettier, eslint, axios
 
 ## Install dependencies
 ```bash
